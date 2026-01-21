@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    position: relative; /* needed for ::before */
+  }
+  
+  /* Semi-transparent background image using pseudo-element */
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('home.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: 0;
+  
+    /* overlay color */
+    background-color: rgba(0, 0, 0, 0.4); /* semi-transparent cyan */
+    background-blend-mode: overlay; /* blends color with image */
+  }
+
+  .text-overlay {
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    text-align: center;
+    z-index: 3; /* above background & signature */
+    color: #0ff; /* neon cyan */
+    font-size: 3rem;
+    text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+    font-weight: 600;
+    pointer-events: none; /* so it doesn’t block clicks */
+  }
+  
+  .text-overlay h1 {
+    animation: fadeInOut 10s infinite;
+  }
+    
+  /* Subtle digital rain effect */
+  .rain {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, rgba(0,255,255,0.1) 2px, transparent 2px);
+    background-size: 2px 100px;
+    animation: rainMove 0.4s linear infinite;
+    z-index: 1;
+    opacity: 0.2;
+  }
+  
+  /* Movement of rain lines */
+  @keyframes rainMove {
+    from { background-position: 0 -100px; }
+    to { background-position: 0 100px; }
+  }
+
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center 30%; /* optional vertical shift */
+    background-repeat: no-repeat;
+    transition: background-image 1s ease-in-out; /* smooth fade */
+    z-index: 0;
+    /* overlay color for tint */
+    background-color: rgba(0,0,0,0.5);
+    background-blend-mode: overlay;
+  }
+  
+  /* Container for the signature */
+  .container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 2s ease-in-out;
+    z-index: 2; /* above background and rain */
+  }
+  
+  /* Image glow and pulse */
+  .container img {
+    max-width: 90%;
+    height: auto;
+    border-radius: 10px;
+    filter: brightness(1.1);
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+    animation: pulseGlow 3s infinite ease-in-out;
+    transition: transform 0.4s ease;
+  }
+  
+  .container img:hover {
+    transform: scale(1.03);
+  }
+  
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Neon pulse */
+  @keyframes pulseGlow {
+    0% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.2); }
+    50% { box-shadow: 0 0 70px rgba(0, 255, 255, 0.8); }
+    100% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.2); }
+  }
+  
+  /* Tablets */
+@media (max-width: 768px) {
+    .text-overlay {
+      font-size: 2rem;
+    }
+    .container img {
+      max-width: 80%;
+    }
+    .rain {
+      background-size: 1.5px 80px;
+    }
+  }
+  
+  /* Mobile (iPhone XR ~414px width) */
+  @media (max-width: 480px) {
+    .text-overlay {
+      font-size: 1.5rem;
+      top: 5%; /* adjust for smaller screen */
+    }
+    .container img {
+      max-width: 95%;
+    }
+    .rain {
+      background-size: 1px 60px;
+      opacity: 0.15;
+    }
+  }

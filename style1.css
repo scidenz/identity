@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: url('back12.jpeg') no-repeat center center/cover;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+  }
+
+  body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6); /* adjust darkness */
+  z-index: 1;
+}
+
+body > * {
+  position: relative;
+  z-index: 2;
+}
+  
+  /* Subtle digital rain effect */
+  .rain {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+    linear-gradient(to bottom, rgba(0,255,255,0.1) 2px, transparent 2px);
+    background-size: 2px 100px;
+    animation: rainMove 0.4s linear infinite;
+    z-index: 0;
+    opacity: 0.2;
+  }
+  
+  /* Movement of rain lines */
+  @keyframes rainMove {
+    from { background-position: 0 -100px; }
+    to { background-position: 0 100px; }
+  }
+  
+  /* Container for the signature */
+  .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 2s ease-in-out;
+    z-index: 2;
+  }
+  
+  /* Image glow and pulse */
+  .container img {
+    position: relative;
+    max-width: 100%;
+    margin-top: 30%;
+    height: auto;
+    border-radius: 10px;
+    filter: brightness(1.1);
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+    animation: pulseGlow 3s infinite ease-in-out;
+    transition: transform 0.4s ease;
+    z-index: 3;
+  }
+  
+  .container img:hover {
+    transform: scale(1.03);
+  }
+
+  .rec{
+    text-decoration: none;
+    margin-right: 19px;
+    font-size: 60px;
+    display: inline-block;
+    transform-origin: center;
+    transition: transform 0.4s ease, filter 0.4s ease;
+  }
+  
+  .rec:hover {
+    transform: rotate(90deg) scale(1.1); /* example effect */
+    filter: drop-shadow(0 0 10px rgb(0, 69, 69));
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Neon pulse */
+  @keyframes pulseGlow {
+    0% {
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 70px rgba(0, 255, 255, 0.8);
+    }
+    100% {
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+    }
+  }
+
+  /* Tablets */
+@media (max-width: 768px) {
+    .container img {
+      max-width: 80%;
+      margin-left: 20%;
+    }
+    .rec {
+      font-size: 40px;
+      margin-left: 50px;
+    }
+    .rain {
+      background-size: 1.5px 80px;
+    }
+  }
+  
